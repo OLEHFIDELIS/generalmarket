@@ -18,7 +18,7 @@ function App() {
     <div>
       <BrowserRouter>
       <NewNav/>
-      <Navbar />  
+      {/* <Navbar />   */}
 
       <Routes>
         <Route path='/' element={<Shop />} />
