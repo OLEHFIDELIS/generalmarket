@@ -5,6 +5,7 @@ import Offers from "../Components/Offers/Offers"
 import NewCollections from "../Components/NewCollections/NewCollections"
 import NewsLetter from "../Components/NewsLetter/NewsLetter"
 import Footer from "../Components/Footer/Footer"
+import Search from "../Components/Search/Search"
 
 const Shop = ()=> {
     return(

@@ -15,7 +15,7 @@ const Hero = () => {
                         <p>new</p>
                         <img src={hand_icon } alt="" />
                     </div>
-                    <p>collections</p>
+                    <p>Arivals</p>
                     <p>for everyOne</p>
                 </div>
                 <div className="hero-latest-button">
@@ -24,7 +24,7 @@ const Hero = () => {
                 </div>
             </div>
             <div className="hero-rigth">
-                <img src={hero_image} alt="" />
+                {/* <img src={hero_image} alt="" /> */}
             </div>
         </div>
     )

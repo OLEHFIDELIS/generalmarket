@@ -1,8 +1,23 @@
-.hero{
-   height: 100vh;
-   background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
-   display: flex;
-   overflow: hidden;
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  justify-content: center; /* optional, for centering content */
+  align-items: center;     /* optional */
+  color: white;            /* ensure text is visible */
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.2),  /* dark at top */
+    rgba(0, 0, 0, 0.3)   /* dark at bottom */
+  ),
+  url("../Assets/home-search-bg.jpg") center/cover no-repeat;
+  z-index: -1;  /* keeps it behind content */
 }
 
 .hero-left{
@@ -16,13 +31,14 @@
 }
 
 .hero-left h2{
-    color: #090909;
+    color: #ffff;
     font-size: 26px;
     font-weight: 600;
 }
 
 .hero-left p{
-    color: #171717;
+    /* color: #171717; */
+    color: #fff;
     font-size: 100px;
     font-weight: 700;
 }
@@ -46,7 +62,7 @@
     height: 70px;
     border-radius: 75px;
     margin-top: 30px;
-    background: #ff4141;
+    background: #6646EE;
     color: white;
     font-size: 22px;
     font-weight: 500;
