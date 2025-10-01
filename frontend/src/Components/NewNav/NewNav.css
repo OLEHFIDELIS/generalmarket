@@ -67,3 +67,27 @@
     padding-bottom: 3px;
 }
 
+@media (max-width: 1024px) {
+    .navbbar{
+        padding: 0px;
+    }
+    .navbbar .navright{
+        padding-left: 0px;
+        font-size: 14px;
+        width: 50%;
+    }
+    .navbbar .navleft{
+        font-size: 14px;
+        padding: 0px;
+    }
+    .navbbar .navleft div img{
+        width: 26px;
+    }
+    .navbbar .navleft .nav-cart-count{
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+}
+
