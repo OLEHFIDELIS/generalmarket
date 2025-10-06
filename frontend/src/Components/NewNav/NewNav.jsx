@@ -33,6 +33,10 @@ const NewNav = () => {
                 <a className="publish" href="">Sell</a>
             </div>
             <div className="nav-left">
+                <div className="cart-items">
+                    <Link to='/cart'><img src={cart_icon} alt="" /></Link>
+                    <div className="nav-cart-count">{getTotalCartItems()}</div>
+                </div>
                 <a href="/login">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28"><path d="M384 336c-40.6 0-47.6-1.5-72.2
                      6.8-17.5 5.9-36.3 9.2-55.8 9.2s-38.3-3.3-55.8-9.2c-24.6-8.3-31.5-6.8-72.2-6.8C57.3 336 0 393.3 0 464v16c0 17.7 14.3 32 32 32h448c17.7 
@@ -62,8 +66,8 @@ const NewNav = () => {
 
                             <ul className="menu-list">
                                 <li><FaPlus /> Post an ad</li>
-                                <li><FaSearch /> Search</li>
-                                <li><FaSignInAlt /> Log in</li>
+                                <li> <FaSearch /> Search</li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}} to="/login"> <FaSignInAlt /> Log in </Link></li>
                                 <li><FaUserPlus /> Register account</li>
                                 <li><FaBuilding /> Companies</li>
                                 <li><FaMapMarkerAlt /> Change location</li>

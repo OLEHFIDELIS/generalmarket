@@ -1,13 +1,20 @@
+/* ===================== NAVBAR ===================== */
 .navbbar {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
 }
 
+/* --------- LEFT (Logo) --------- */
 .navbbar .navright {
   display: flex;
   align-items: center;
   width: 40%;
-  padding-left: 45px;
   font-weight: 500;
 }
 
@@ -21,6 +28,7 @@
   object-fit: contain;
 }
 
+/* --------- RIGHT (Links) --------- */
 .navbbar .navleft {
   display: flex;
   flex-direction: row;
@@ -30,17 +38,24 @@
   font-weight: 500;
 }
 
-.navbbar .navleft a {
-  text-decoration: none;
-  color: #363636;
-  font-weight: 400;
-}
-
 .navbbar .navleft div {
   display: flex;
   align-items: center;
   gap: 45px;
 }
+
+.navbbar .navleft a {
+  text-decoration: none;
+  color: #363636;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.navbbar .navleft a:hover {
+  color: #523fdb;
+}
+
+/* --------- CART COUNTER --------- */
 .navbbar .navleft .nav-cart-count {
   width: 22px;
   height: 22px;
@@ -49,49 +64,62 @@
   align-items: center;
   margin-top: -35px;
   margin-left: -55px;
-  border-radius: 11px;
+  border-radius: 50%;
   border: none;
   font-size: 14px;
   background: red;
   color: white;
 }
 
+/* --------- PUBLISH BUTTON --------- */
 .navbbar .navleft .publish {
-  width: 100px;
+  min-width: 100px;
   height: 30px;
   text-align: center;
   padding: 8px 12px;
   border-radius: 6px;
   background-color: #523fdb;
-  color: #ffff;
-  padding-bottom: 3px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
+.navbbar .navleft .publish:hover {
+  background-color: #3a2ebf;
+}
+
+/* --------- MOBILE NAVBAR ICONS --------- */
 .navbbar .nav-left {
   display: none;
 }
 
+/* ===================== TABLET RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   .navbbar {
-    padding: 0px;
+    padding: 0 10px;
   }
+
   .navbbar .navright {
-    padding-left: 0px;
-    font-size: 14px;
     width: 50%;
+    font-size: 14px;
   }
+
   .navbbar .navleft {
     font-size: 14px;
-    padding: 0px;
+    padding: 0;
   }
+
   .navbbar .navleft div img {
     width: 26px;
   }
+
   .navbbar .navleft .nav-cart-count {
     width: 20px;
     height: 20px;
     font-size: 10px;
   }
+
   .navbbar .navleft .publish {
     width: 86px;
     height: 25px;
@@ -101,38 +129,62 @@
   }
 }
 
+/* ===================== MOBILE RESPONSIVE ===================== */
 @media (max-width: 767px) {
   .navbbar {
     justify-content: space-between;
   }
+
   .navbbar .navright .logo img {
     width: 45%;
     max-height: 70px;
     margin-left: 8px;
   }
+
   .navbbar .navright .companies {
     display: none;
   }
+
   .navbbar .navleft {
     display: none;
   }
+
   .navbbar .nav-left {
-    width: 100px;
+    width: 150px;
     display: flex;
     padding-top: 20px;
     margin-right: 5px;
     justify-content: space-evenly;
     color: #5c5c5c;
   }
+
   .navbbar .nav-left svg {
     width: 23px;
     color: #5c5c5c;
+  }
+
+  .navbbar .nav-left .cart-items {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .navbbar .nav-left .cart-items img{
+       width: 26px;
+  }
+
+  .navbbar .nav-left .nav-cart-count {
+    max-width: 19px;
+    height: 19px;
+    font-size: 10px;
   }
 
   /* Overlay background */
 .overlay {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.45);
   display: flex;
   justify-content: center;
@@ -145,13 +197,12 @@
 .menu-container {
   background-color: #fff;
   width: 100%; /* ✅ full width */
-  height: auto;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 20px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
   animation: slideUp 0.3s ease;
-  max-height: 90vh; /* prevents overflow */
+  max-height: 90vh;
   overflow-y: auto;
 }
 
@@ -214,7 +265,7 @@
   margin: 10px 0;
 }
 
-/* Floating button */
+/* Floating open button */
 .menu-btn {
   position: fixed;
   bottom: 20px;
@@ -254,7 +305,7 @@
   }
 }
 
-/* Responsive */
+/* Responsive for small screens */
 @media (max-width: 768px) {
   .menu-container {
     width: 100%;
@@ -267,3 +318,6 @@
   }
 }
 }
+
+/* ===================== BOTTOM MENU (Mobile) ===================== */
+
