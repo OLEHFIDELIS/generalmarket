@@ -10,13 +10,14 @@ const Footer = () => {
           <div className="faji-logo">G-Market<span>.ng</span></div>
           <h3>General-Market</h3>
           <p className="faji-contact">
-            Phone: <a href="tel:07025187910">07025187910</a><br />
-            Email: <a href="mailto:info@faji.ng">info@faji.ng</a><br />
+            Phone: <a href="tel:07025187910">08141846896</a><br />
+            Phone: <a href="tel:07025187910">09034808095</a><br />
+            Email: <a href="mailto:info@faji.ng">generalmarket@gmail.com</a><br />
             NO 8 John Adollo Ikeja Lagos State
           </p>
           <p className="faji-desc">
-            G-markert.ng is Nigeria’s trusted online classifieds platform, connecting buyers and sellers across the country.
-            From jobs and services to vehicles, electronics, and real estate, G-market.ng makes it easy to find great deals 
+            General Markert  is Nigeria’s trusted online classifieds platform, connecting buyers and sellers across the country.
+            From jobs and services to vehicles, electronics, and real estate, General-Market makes it easy to find great deals 
             and grow your business. <br />Safe. Simple. Local.
           </p>
           <button className="dark-mode-btn">☾ Switch to dark mode</button>

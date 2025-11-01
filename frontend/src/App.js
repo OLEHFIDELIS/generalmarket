@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      <NewNav/>
+      <NewNav/> 
       {/* <Navbar />   */}
 
       <Routes>
