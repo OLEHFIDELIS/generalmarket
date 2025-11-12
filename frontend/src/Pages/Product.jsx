@@ -6,6 +6,7 @@ import Breadcrum from "../Components/Breadcrums/Breadcrum";
 import ProductDisplay from "../Components/ProductDisplay/ProductDisplay";
 import DescribtionBox from "../Components/DescribtionBox/DescribtionBox";
 import RelatedProduct from "../Components/RelatedProduct/RelatedProduct";
+import ProductDisplayM from "../Components/ProductDisplayMain/ProductDisplayM";
 
 
 

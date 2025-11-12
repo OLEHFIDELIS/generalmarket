@@ -5,24 +5,48 @@ const ProductSchema = new mongoose.Schema({
         type: Number, 
         required: true 
     },
-    name: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true
-    },
     category: {
         type: String,
         required: true
     },
-    new_price: {
-        type: Number,
+    title: {
+        type: String,
+        required: true,
+    },
+    description:{
+        type: String,
         required: true
     },
-    old_price: {
+    price:{
         type: Number,
+        required: true 
+    },
+    transaction:{
+        type: String,
+    },
+    condition:{
+        type: String,
+    },
+    region:{
+        type: String,
+    },
+    city:{
+        type: String,
+    },
+    address: {
+        type: String,
+    },
+    zip:{
+        type: String,
+    },
+    phone:{
+        type: String,
+    },
+    email:{
+        type: String,
+    },
+    image: {
+        type: String,
         required: true
     },
     date: {
@@ -38,3 +62,6 @@ const ProductSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", ProductSchema);
 
 module.exports = Product;
+
+
+

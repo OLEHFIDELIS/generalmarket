@@ -1,0 +1,250 @@
+import React, { useState } from "react";
+import "./AddProductM.css";
+
+const AddListing = () => {
+  const [formData, setFormData] = useState({
+    category: "",
+    title: "",
+    description: "",
+    price: "",
+    transaction: "",
+    condition: "",
+    region: "",
+    city: "",
+    address: "",
+    zip: "",
+    phone: "",
+    email: "",
+    images: [],
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    setFormData({ ...formData, images: files });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    alert("Listing submitted successfully!");
+  };
+
+  return (
+    <div className="add-listing-container">
+      <h2>Add a New Listing</h2>
+
+      <form className="listing-form" onSubmit={handleSubmit}>
+        {/* Photos */}
+        <div className="form-section">
+          <h3>Photos</h3>
+          <p>You can upload up to 12 pictures per listing.</p>
+          <div className="upload-box">
+            <label htmlFor="images" className="upload-label">
+              <i className="fas fa-cloud-upload-alt"></i>
+              <p>Upload images</p>
+            </label>
+            <input
+              type="file"
+              id="images"
+              name="images"
+              multiple
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+          </div>
+        </div>
+
+        {/* About the item */}
+        <div className="form-section">
+          <h3>About the Item</h3>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select category</option>
+            <option value="electronics">Electronics</option>
+            <option value="property">Property</option>
+            <option value="verhicles">Verhicles</option>
+            <option value="home & Furniture">Home & Furniture</option>
+            <option value="fasion & Beauty">Fasion & Beauty</option>
+            <option value="hobbies & entertainment">Hobbies & Entertainment</option>
+            <option value="services">Services</option>
+            <option value="garden & Outdoor">Garden & Outdoor</option>
+            <option value="jobs">jobs</option>
+            <option value="agricultuer & food">Agriculture & Food</option>
+            <option value="business & industrial">Business & industrial</option>
+            <option value="baby & kids">Baby & Kids</option>
+            <option value="Misc & Others">Misc & Others</option>
+            <option value="Adult">Adult</option>
+          </select>
+
+          <input
+            type="text"
+            name="title"
+            placeholder="Listing title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+
+        {/* Pricing */}
+        <div className="form-section">
+          <h3>Pricing & Status</h3>
+          <div className="price-box">
+            <span>₦</span>
+            <input
+              type="number"
+              name="price"
+              placeholder="Price"
+              value={formData.price}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="two-column">
+            <select
+              name="transaction"
+              value={formData.transaction}
+              onChange={handleChange}
+            >
+              <option value="">Any transaction</option>
+              <option value="sale">Sell</option>
+              <option value="buy">Buy</option>
+              <option value="rent">Rent</option>
+              <option value="exchange">Exchange</option>
+            </select>
+
+            <select
+              name="condition"
+              value={formData.condition}
+              onChange={handleChange}
+            >
+              <option value="">Any condition</option>
+              <option value="new">New</option>
+              <option value="used">Used</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Location */}
+        <div className="form-section">
+          <h3>Listing Location</h3>
+          <select
+            name="region"
+            value={formData.region}
+            onChange={handleChange}
+          >
+            <option value="">Select region</option>
+            <option value="abia">Abia</option>
+            <option value="adamawa">Adamawa</option>
+            <option value="akwa-ibom">Akwa Ibom</option>
+            <option value="anambra">Anambra</option>
+            <option value="bauchi">Bauchi</option>
+            <option value="bayelsa">Bayelsa</option>
+            <option value="benue">Benue</option>
+            <option value="borno">Borno</option>
+            <option value="cross-river">Cross River</option>
+            <option value="delta">Delta</option>
+            <option value="ebonyi">Ebonyi</option>
+            <option value="edo">Edo</option>
+            <option value="ekiti">Ekiti</option>
+            <option value="enugu">Enugu</option>
+            <option value="gombe">Gombe</option>
+            <option value="imo">Imo</option>
+            <option value="jigawa">Jigawa</option>
+            <option value="kaduna">Kaduna</option>
+            <option value="kano">Kano</option>
+            <option value="katsina">Katsina</option>
+            <option value="kebbi">Kebbi</option>
+            <option value="kogi">Kogi</option>
+            <option value="kwara">Kwara</option>
+            <option value="lagos">Lagos</option>
+            <option value="nasarawa">Nasarawa</option>
+            <option value="niger">Niger</option>
+            <option value="ogun">Ogun</option>
+            <option value="ondo">Ondo</option>
+            <option value="osun">Osun</option>
+            <option value="oyo">Oyo</option>
+            <option value="plateau">Plateau</option>
+            <option value="rivers">Rivers</option>
+            <option value="sokoto">Sokoto</option>
+            <option value="taraba">Taraba</option>
+            <option value="yobe">Yobe</option>
+            <option value="zamfara">Zamfara</option>
+            <option value="fct">Federal Capital Territory (Abuja)</option>
+          </select>
+
+          <input
+            type="text"
+            name="city"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+          />
+
+          <div className="two-column">
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="zip"
+              placeholder="ZIP"
+              value={formData.zip}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        {/* Seller Info */}
+        <div className="form-section">
+          <h3>Seller’s Details</h3>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* Submit */}
+        <button type="submit" className="submit-btn">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default AddListing;

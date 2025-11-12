@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Hero.css";
+import "./ProductDisplayM.css";
 
-const Hero = () => {
+const HeroSection = () => {
   const [query, setQuery] = useState("");
 
   const handleSearch = (e) => {
@@ -31,4 +31,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;
