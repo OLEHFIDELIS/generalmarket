@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./AddProductM.css";
 
 const AddListing = () => {
@@ -18,20 +19,71 @@ const AddListing = () => {
     images: [],
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle basic input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle image file input
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     setFormData({ ...formData, images: files });
   };
 
-  const handleSubmit = (e) => {
+  // Submit handler with image upload logic
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Listing submitted successfully!");
+    if (!formData.images.length) {
+      alert("Please upload at least one image.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      // Step 1: Upload images
+      const imageForm = new FormData();
+      formData.images.forEach((img) => imageForm.append("images", img));
+
+      const uploadRes = await axios.post("http://localhost:4000/upload", imageForm, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      const imageUrls = uploadRes.data.urls || uploadRes.data;
+      console.log("Uploaded image URLs:", imageUrls);
+
+      // Step 2: Save product data
+      const productData = { ...formData, images: imageUrls };
+
+      await axios.post("http://localhost:4000/addproduct", productData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      alert("✅ Listing submitted successfully!");
+      setFormData({
+        category: "",
+        title: "",
+        description: "",
+        price: "",
+        transaction: "",
+        condition: "",
+        region: "",
+        city: "",
+        address: "",
+        zip: "",
+        phone: "",
+        email: "",
+        images: [],
+      });
+    } catch (error) {
+      console.error("Error submitting listing:", error);
+      alert("❌ Error submitting listing, please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -43,7 +95,7 @@ const AddListing = () => {
         <div className="form-section">
           <h3>Photos</h3>
           <p>You can upload up to 12 pictures per listing.</p>
-          <div className="upload-box">
+          <div className="upload-box ">
             <label htmlFor="images" className="upload-label">
               <i className="fas fa-cloud-upload-alt"></i>
               <p>Upload images</p>
@@ -57,6 +109,19 @@ const AddListing = () => {
               onChange={handleImageUpload}
             />
           </div>
+          {/* Preview images */}
+          {formData.images.length > 0 && (
+            <div className="preview-grid upload-preview">
+              {formData.images.map((img, index) => (
+                <img
+                  key={index}
+                  src={URL.createObjectURL(img)}
+                  alt={`preview-${index}`}
+                  className="preview-img"
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* About the item */}
@@ -125,7 +190,7 @@ const AddListing = () => {
               onChange={handleChange}
             >
               <option value="">Any transaction</option>
-              <option value="sale">Sell</option>
+              <option value="sell">Sell</option>
               <option value="buy">Buy</option>
               <option value="rent">Rent</option>
               <option value="exchange">Exchange</option>
@@ -188,7 +253,7 @@ const AddListing = () => {
             <option value="taraba">Taraba</option>
             <option value="yobe">Yobe</option>
             <option value="zamfara">Zamfara</option>
-            <option value="fct">Federal Capital Territory (Abuja)</option>
+            <option value="fct">Abuja</option>
           </select>
 
           <input
@@ -239,8 +304,8 @@ const AddListing = () => {
         </div>
 
         {/* Submit */}
-        <button type="submit" className="submit-btn">
-          Submit
+        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

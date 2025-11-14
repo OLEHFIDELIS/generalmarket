@@ -45,11 +45,11 @@ const ProductSchema = new mongoose.Schema({
     email:{
         type: String,
     },
-    image: {
-        type: String,
+    images: {
+        type: [String],
         required: true
     },
-    date: {
+    createdAt: {
         type: Date,
         default: Date.now
     },

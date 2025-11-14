@@ -84,6 +84,28 @@ input, select, textarea {
   background: #5a2ce3;
 }
 
+/* ===== Image Upload Preview Section ===== */
+.upload-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.upload-preview img {
+  width: 120px;       /* Set fixed thumbnail size */
+  height: 120px;
+  object-fit: cover;  /* Crop rather than stretch */
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.upload-preview img:hover {
+  transform: scale(1.05);
+}
+
 /* ✅ Responsive */
 @media (max-width: 768px) {
   .add-listing-container {
