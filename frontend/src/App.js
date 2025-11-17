@@ -11,6 +11,7 @@ import men_banner from './Components/Assets/banner_mens.png'
 import women_banner from './Components/Assets/banner_women.png'
 import kid_banner from './Components/Assets/banner_kids.png'
 import NewNav from './Components/NewNav/NewNav'
+import { categories } from "./data/categories";
 
 
 function App() {
@@ -21,10 +22,17 @@ function App() {
       {/* <Navbar />   */}
 
       <Routes>
-        <Route path='/' element={<Shop />} />
-        <Route path='/men' element={<ShopCategory banner={men_banner} category="men" />} />
-        <Route path='/women' element={<ShopCategory banner={women_banner} category="women" />} />
-        <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid" />} />
+        <Route path="/" element={<Shop />} />
+        {/* AUTO-GENERATE CATEGORY ROUTES */}
+        {categories.map((cat, index) => (
+          <Route
+            key={index}
+            path={`/category/${cat.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
+            element={<ShopCategory category={cat} />}
+          />
+        ))}
+
+        {/* Product routes */}
         <Route path='/product'>
           <Route index element={<Product />} />
           <Route path=":productId" element={<Product />} />

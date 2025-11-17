@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const fs = require("fs");
 require("dotenv").config();
 const port = process.env.PORT || 4000;
 const jwt = require("jsonwebtoken");
@@ -33,26 +34,39 @@ app.get("/", (req, res) => {
 });
 
 // ✅ Multer Storage Configuration
-// Storage configuration
+
+// helper to sanitize filenames
+function safeFilename(originalName) {
+  const ext = path.extname(originalName).toLowerCase();         // keep extension
+  const name = path.basename(originalName, ext)
+    .replace(/\s+/g, "_")              // spaces -> _
+    .replace(/[^\w-_]/g, "")           // remove non-alphanum except - and _
+    .slice(0, 120);                    // limit length
+  return `${Date.now()}-${name}${ext}`;
+}
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"), // folder to save files
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname) // unique name
+  destination: (req, file, cb) => {
+    const dir = path.join(__dirname, "uploads/images");
+    // ensure folder exists
+    fs.mkdirSync(dir, { recursive: true });
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, safeFilename(file.originalname));
+  }
 });
 
-// Only allow image files
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = /jpeg|jpg|png|gif/;
-  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = allowedTypes.test(file.mimetype);
-  if (mimetype && extname) cb(null, true);
-  else cb(new Error("Only images are allowed"));
-};
-
-// Initialize multer
 const upload = multer({
   storage,
-  fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 } // 5MB max per file
+  fileFilter: (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|gif/;
+    const ext = allowed.test(path.extname(file.originalname).toLowerCase());
+    const mime = allowed.test(file.mimetype);
+    if (ext && mime) cb(null, true);
+    else cb(new Error("Only images allowed"));
+  },
+  limits: { fileSize: 5 * 1024 * 1024 }
 });
 
 // ✅ Upload Multiple Images Endpoint
@@ -70,12 +84,13 @@ app.post("/upload", upload.array("images", 12), (req, res) => {
 })
 // ✅ Create Product Endpoint
 app.post("/addproduct", async (req, res) => {
-    console.log("Request Body:", req.body);
   try {
     const products = await Product.find({});
-    const newId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+    const newId =
+      products.length > 0 ? products[products.length - 1].id + 1 : 1;
 
     const {
+      category,
       title,
       description,
       price,
@@ -87,11 +102,12 @@ app.post("/addproduct", async (req, res) => {
       zip,
       phone,
       email,
-      category,
       images,
     } = req.body;
+
     const product = new Product({
       id: newId,
+      category,
       title,
       description,
       price,
@@ -103,12 +119,10 @@ app.post("/addproduct", async (req, res) => {
       zip,
       phone,
       email,
-      category,
-      images,// this will be an array of URLs from /upload
+      images, // Already URLs from frontend
       createdAt: new Date(),
+      available: true,
     });
-
-    console.log(req.body);
     await product.save();
 
     res.json({
@@ -118,7 +132,7 @@ app.post("/addproduct", async (req, res) => {
     });
   } catch (err) {
     console.error("❌ Error creating product:", err.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({ success: false });
   }
 });
 
