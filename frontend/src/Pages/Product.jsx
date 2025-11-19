@@ -19,8 +19,7 @@ const Product = ()=> {
         <div className="">
             <Breadcrum product={product}/>
             <ProductDisplay product={product}/>
-            <DescribtionBox/>
-            <RelatedProduct/>
+            <RelatedProduct productId={product._id} />
         </div>
     )
 }; 

@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./RelatedProduct.css";
-import data_product from "../Assets/data";
 import Item from "../Items/Item";
 
-const RelatedProduct = () => {
+const RelatedProduct = ({ productId }) => {
+  const [related, setRelated] = useState([]);
+
+  useEffect(() => {
+    if (!productId) return;
+
+    fetch(`http://localhost:4000/related-products/${productId}`)
+      .then(res => res.json())
+      .then(data => setRelated(data))
+      .catch(err => console.log(err));
+  }, [productId]);
+
   return (
     <div className="relatedproducts">
       <h1>Related Products</h1>
       <hr />
+
       <div className="relatedproducts-item">
-        {data_product.map((item, i) => (
-          <Item
-            key={i}
-            id={item.id}
-            name={item.title}        // Correct if your data uses "title"
-            image={item.images}      // Should be "image", not "images" unless Item accepts "images"
-            new_price={item.price}   // Correct if API returns "price"
-            old_price={item.old_price || null}
-          />
-        ))}
+        {related.length > 0 ? (
+          related.map((item) => (
+            <Item
+              key={item._id}
+              id={item._id}
+              name={item.title}
+              images={item.images}
+              new_price={item.price}
+              old_price={item.old_price}
+              location={item.location}
+            />
+          ))
+        ) : (
+          <p>No related products found.</p>
+        )}
       </div>
     </div>
   );
