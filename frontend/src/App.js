@@ -1,5 +1,4 @@
 import './App.css';
-import Navbar from './Components/Navbar/Navbar';
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
@@ -7,9 +6,6 @@ import LoginSignup from './Pages/LoginSignup';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart'
 import Footer from './Components/Footer/Footer';
-import men_banner from './Components/Assets/banner_mens.png'
-import women_banner from './Components/Assets/banner_women.png'
-import kid_banner from './Components/Assets/banner_kids.png'
 import NewNav from './Components/NewNav/NewNav'
 import { categories } from "./data/categories";
 

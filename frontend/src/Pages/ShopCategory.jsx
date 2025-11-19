@@ -25,20 +25,19 @@ const ShopCategory = (props) => {
 
       <div className="shopcategory-products">
         {all_product
-          .filter((item) => {
-            if (!item.category) return false;
-            return (
-              item.category.toLowerCase() === currentCategory
-            );
-          })
+          .filter((item) =>
+            item.category &&
+            item.category.toLowerCase() === currentCategory
+          )
           .map((item, i) => (
             <Item
               key={i}
               id={item.id}
               name={item.title}
-              image={item.image?.[0]} // FIX: show first image
-              new_price={item.price}  // Using your backend field
-              old_price={null}        // optional
+              images={item.images}       // ✅ REAL backend image array
+              new_price={item.price}     // ✅ Correct price
+              old_price={null}
+              address={item.address}     // ✅ Pass address
             />
           ))}
       </div>
