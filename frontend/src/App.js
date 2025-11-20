@@ -8,6 +8,7 @@ import Cart from './Pages/Cart'
 import Footer from './Components/Footer/Footer';
 import NewNav from './Components/NewNav/NewNav'
 import { categories } from "./data/categories";
+import Navbar from './Components/Navbar/Navbar';
 
 
 function App() {

@@ -131,7 +131,7 @@ const ShopContextProvider = (props) => {
 
   // ✅ Load products
   useEffect(() => {
-    fetch("http://localhost:4000/allproduct")
+    fetch("https://generalmarket-bruz.onrender.com/allproduct")
       .then((response) => response.json())
       .then((data) => setAll_product(data));
   }, []);
@@ -142,7 +142,7 @@ const ShopContextProvider = (props) => {
 
     if (token) {
       // Fetch user cart from backend
-      fetch("http://localhost:4000/getcart", {
+      fetch("https://generalmarket-bruz.onrender.com/getcart", {
         method: "GET",
         headers: {
           "auth-token": token,
@@ -176,7 +176,7 @@ const ShopContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://generalmarket-bruz.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -201,7 +201,7 @@ const ShopContextProvider = (props) => {
     });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://generalmarket-bruz.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
