@@ -9,6 +9,9 @@ require("dotenv").config();
 const port = process.env.PORT || 4000;
 const jwt = require("jsonwebtoken");
 
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("./cloudinary");
+
 const Product = require("./schema/product");
 const User = require("./schema/user");
 
@@ -33,61 +36,49 @@ app.get("/", (req, res) => {
   res.send("Server running successfully 🚀");
 });
 
-// ✅ Multer Storage Configuration
 
-// helper to sanitize filenames
-function safeFilename(originalName) {
-  const ext = path.extname(originalName).toLowerCase();         // keep extension
-  const name = path.basename(originalName, ext)
-    .replace(/\s+/g, "_")              // spaces -> _
-    .replace(/[^\w-_]/g, "")           // remove non-alphanum except - and _
-    .slice(0, 120);                    // limit length
-  return `${Date.now()}-${name}${ext}`;
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const dir = path.join(__dirname, "uploads/images");
-    // ensure folder exists
-    fs.mkdirSync(dir, { recursive: true });
-    cb(null, dir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, safeFilename(file.originalname));
+// --------------------------------------------------
+// 📌 MULTER & CLOUDINARY SETUP
+// -----------------------------------------
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "generalmarket",
+    allowed_formats: ["jpg", "jpeg", "png", "gif"],
+    transformation: [{ width: 1000, height: 1000, crop: "limit" }]
   }
 });
 
-const upload = multer({
-  storage,
-  fileFilter: (req, file, cb) => {
-    const allowed = /jpeg|jpg|png|gif/;
-    const ext = allowed.test(path.extname(file.originalname).toLowerCase());
-    const mime = allowed.test(file.mimetype);
-    if (ext && mime) cb(null, true);
-    else cb(new Error("Only images allowed"));
-  },
-  limits: { fileSize: 5 * 1024 * 1024 }
-});
+const upload = multer({ storage });
 
-// ✅ Upload Multiple Images Endpoint
+
+// -----------------------------------------
+// 📌 UPLOAD IMAGES (CLOUDINARY)
+// -----------------------------------------
 app.post("/upload", upload.array("images", 12), (req, res) => {
-  if (!req.files || req.files.length === 0) {
-    return res.status(400).json({ success: false, message: "No files uploaded" });
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ success: false, message: "No files uploaded" });
+    }
+
+    // Cloudinary returns full URL in file.path
+    const imageUrls = req.files.map((file) => file.path);
+
+    return res.json({ success: true, urls: imageUrls });
+  } catch (error) {
+    console.error("Upload Error:", error);
+    return res.status(500).json({ success: false, message: "Upload failed" });
   }
-
-  const imageUrls = req.files.map(
-    (file) => `http://localhost:${PORT}/images/${file.filename}`
-  );
+});
 
 
-    res.json({ success: true, urls: imageUrls});
-})
-// ✅ Create Product Endpoint
+// -----------------------------------------
+// 📌 CREATE PRODUCT
+// -----------------------------------------
 app.post("/addproduct", async (req, res) => {
   try {
     const products = await Product.find({});
-    const newId =
-      products.length > 0 ? products[products.length - 1].id + 1 : 1;
+    const newId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
 
     const {
       category,
@@ -102,7 +93,7 @@ app.post("/addproduct", async (req, res) => {
       zip,
       phone,
       email,
-      images,
+      images
     } = req.body;
 
     const product = new Product({
@@ -119,16 +110,17 @@ app.post("/addproduct", async (req, res) => {
       zip,
       phone,
       email,
-      images, // Already URLs from frontend
+      images, // Cloudinary URLs from frontend
       createdAt: new Date(),
-      available: true,
+      available: true
     });
+
     await product.save();
 
     res.json({
       success: true,
       message: "Product created successfully",
-      product,
+      product
     });
   } catch (err) {
     console.error("❌ Error creating product:", err.message);
