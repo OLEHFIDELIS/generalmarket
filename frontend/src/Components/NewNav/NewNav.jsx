@@ -8,7 +8,6 @@ import { FaPlus, FaSearch, FaSignInAlt, FaUserPlus, FaBuilding, FaMapMarkerAlt, 
 
 
 const NewNav = () => {
-
     const { getTotalCartItems } = useContext(ShopContext);
     const [ open, setOpen ] = useState(false);
 
@@ -16,15 +15,20 @@ const NewNav = () => {
 
     return (
         <div className="navbbar">
+
+            {/* LEFT SIDE */}
             <div className="navright">
                 <a className="logo" href="/"><img src={logo} alt="logo" /></a>
                 <div className="companies">Companies</div>
             </div>
+
+            {/* RIGHT SIDE (Desktop) */}
             <div className="navleft">
                 {localStorage.getItem("auth-token") ? <div onClick={() => {
                     localStorage.removeItem("auth-token"); window.location.replace("/")
                 }}>Logout</div> : <Link to='/login'><div>Login</div></Link>}
                 <a href="/login">Register</a>
+
                 <div>
                     <Link to='/cart'><img src={cart_icon} alt="" /></Link>
                     <div className="nav-cart-count">{getTotalCartItems()}</div>
@@ -32,11 +36,14 @@ const NewNav = () => {
                 <a href="">compass</a>
                 <a className="publish" href="">Sell</a>
             </div>
+
+            {/* MOBILE NAV ICONS */}
             <div className="nav-left">
                 <div className="cart-items">
                     <Link to='/cart'><img src={cart_icon} alt="" /></Link>
                     <div className="nav-cart-count">{getTotalCartItems()}</div>
                 </div>
+
                 <a href="/login">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28"><path d="M384 336c-40.6 0-47.6-1.5-72.2
                      6.8-17.5 5.9-36.3 9.2-55.8 9.2s-38.3-3.3-55.8-9.2c-24.6-8.3-31.5-6.8-72.2-6.8C57.3 336 0 393.3 0 464v16c0 17.7 14.3 32 32 32h448c17.7 
@@ -65,12 +72,12 @@ const NewNav = () => {
                             </div>
 
                             <ul className="menu-list">
-                                <li><FaPlus /> Post an ad</li>
-                                <li> <FaSearch /> Search</li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}} to="https://wa.me/16093536598"><FaPlus /> Post an ad</Link></li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}}><FaSearch /> Search</Link></li>
                                 <li> <Link style={{textDecoration: "none", color: "#444"}} to="/login"> <FaSignInAlt /> Log in </Link></li>
-                                <li><FaUserPlus /> Register account</li>
-                                <li><FaBuilding /> Companies</li>
-                                <li><FaMapMarkerAlt /> Change location</li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}} to="/login"> <FaUserPlus /> Register account</Link></li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}} > <FaBuilding /> Companies</Link> </li>
+                                <li> <Link style={{textDecoration: "none", color: "#444"}} > <FaMapMarkerAlt /> Change location</Link></li>
                                 <li><FaInfoCircle /> Help</li>
                                 <li><FaEnvelope /> Contact us</li>
                                 <li className="divider"></li>
@@ -84,4 +91,4 @@ const NewNav = () => {
     )
 }
 
-export default NewNav
+export default NewNav;

@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="overlay"></div>
+      <div className="hero-overlay"></div>
       <div className="hero-content">
         <h1 className="hero-title">Find Your Perfect Market Deal</h1>
         <p className="hero-subtitle">
