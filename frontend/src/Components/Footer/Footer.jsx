@@ -22,8 +22,8 @@ const Footer = () => {
           </p>
           <button className="dark-mode-btn">☾ Switch to dark mode</button>
         </div>
-
-        <div className="faji-social">
+        <div  className="faji-links">
+          <div className="faji-social">
           <h4>Social media</h4>
           <ul>
             <li><FaWhatsapp className="icon" /> Whatsapp</li>
@@ -46,6 +46,7 @@ const Footer = () => {
             <li>Refund Policy</li>
           </ul>
         </div>
+      </div>
       </div>
 
       <div className="faji-middle">

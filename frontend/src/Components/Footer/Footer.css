@@ -140,7 +140,11 @@
 .faji-bottom-links a:hover {
   text-decoration: underline;
 }
-
+.faji-links{
+  display: flex;
+  gap: 15px;
+  /* flex-wrap: wrap; */
+}
 /* RESPONSIVE DESIGN */
 @media (max-width: 900px) {
   .faji-top {
@@ -160,3 +164,19 @@
     padding: 50px 6% 20px;
   }
 }
+
+
+/* ✅ Mobile responsive (≤600px) */
+@media (max-width: 600px) {
+  .faji-links{
+  /* box-sizing: border-box; */
+  display: flex; 
+  flex-direction: row;
+  width: 100%;
+  }
+ .faji-social,
+ .faji-info {
+  flex: 1;
+  max-width: 200px;
+  }
+} 

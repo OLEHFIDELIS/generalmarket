@@ -89,6 +89,7 @@
 /* ✅ Mobile responsive (≤600px) */
 @media (max-width: 600px) {
   .hero {
+    display: none;
     height: 80vh;
     padding: 0 10px;
   }
