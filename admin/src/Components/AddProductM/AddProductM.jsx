@@ -48,7 +48,7 @@ const AddListing = () => {
       const imageForm = new FormData();
       formData.images.forEach((img) => imageForm.append("images", img));
 
-      const uploadRes = await axios.post("http://localhost:4000/upload", imageForm, {
+      const uploadRes = await axios.post("https://generalmarket-bruz.onrender.com/upload", imageForm, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -58,7 +58,7 @@ const AddListing = () => {
       // Step 2: Save product data
       const productData = { ...formData, images: imageUrls };
 
-      await axios.post("http://localhost:4000/addproduct", productData, {
+      await axios.post("https://generalmarket-bruz.onrender.com/addproduct", productData, {
         headers: { "Content-Type": "application/json" },
       });
 
