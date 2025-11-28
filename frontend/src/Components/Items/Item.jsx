@@ -57,7 +57,7 @@ const Item = ({ id, name, images, new_price, old_price, address }) => {
 
       {/* PRICES */}
       <div className="item-prices">
-        <div className="item-price-new">₦{new_price}</div>
+        <div className="item-price-new">₦{Number(new_price).toLocaleString()}</div>
         {old_price && <div className="item-price-old">₦{old_price}</div>}
       </div>
 

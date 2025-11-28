@@ -7,11 +7,11 @@ const Footer = () => {
     <footer className="faji-footer">
       <div className="faji-top">
         <div className="faji-company">
-          <div className="faji-logo">G-Market<span>.ng</span></div>
+          <div className="faji-logo">G-Market<span>.com</span></div>
           <h3>General-Market</h3>
           <p className="faji-contact">
             Phone: <a href="tel:07025187910">08141846896</a><br />
-            Phone: <a href="tel:07025187910">09034808095</a><br />
+            {/* Phone: <a href="tel:07025187910">09034808095</a><br /> */}
             Email: <a href="mailto:info@faji.ng">generalmarket@gmail.com</a><br />
             NO 8 John Adollo Ikeja Lagos State
           </p>
