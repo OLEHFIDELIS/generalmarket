@@ -7,13 +7,13 @@ const Footer = () => {
     <footer className="faji-footer">
       <div className="faji-top">
         <div className="faji-company">
-          <div className="faji-logo">G-Market<span>.com</span></div>
-          <h3>General-Market</h3>
+          <div className="faji-logo">Generalmarket<span>.com</span></div>
+          <h3>Generalmarket</h3>
           <p className="faji-contact">
             Phone: <a href="tel:07025187910">08141846896</a><br />
             {/* Phone: <a href="tel:07025187910">09034808095</a><br /> */}
             Email: <a href="mailto:info@faji.ng">generalmarket@gmail.com</a><br />
-            NO 8 John Adollo Ikeja Lagos State
+            Along ESBS Bus Stop, Enugu
           </p>
           <p className="faji-desc">
             General Markert  is Nigeria’s trusted online classifieds platform, connecting buyers and sellers across the country.
@@ -51,7 +51,7 @@ const Footer = () => {
 
       <div className="faji-middle">
         <p>
-          Welcome to G-Marke.ng – your trusted platform for buying, selling, exchanging and trading across Nigeria. 
+          Welcome to Generalmarke.com – your trusted platform for buying, selling, exchanging and trading across Nigeria. 
           Post free ads and reach thousands of buyers instantly.
         </p>
       </div>

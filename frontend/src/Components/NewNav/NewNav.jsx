@@ -108,7 +108,7 @@ const NewNav = () => {
                                 <li onClick={() => setOpen(false)}>
                                     <a
                                         style={{ textDecoration: "none", color: "#444" }}
-                                        href="https://wa.me/16093536598"
+                                        href="https://wa.me/+2348141846896"
                                     >
                                         <FaPlus /> Post an ad
                                     </a>

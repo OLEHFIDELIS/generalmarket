@@ -8,7 +8,7 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   const actions = [
-    { icon: <FaPlusCircle color="#e53935" />, label: "Add a new item", path: "https://wa.me/16093536598", external: true },
+    { icon: <FaPlusCircle color="#e53935" />, label: "Add a new item", path: "https://wa.me/+2348141846896", external: true },
     { icon: <FaSearch color="#1e88e5" />, label: "Browse listings", path: "/browse" },
     { icon: <FaUserEdit color="#43a047" />, label: "Manage account", path: "/login" },
     { icon: <FaBriefcase color="#6d4c41" />, label: "Business users", path: "/business" },
