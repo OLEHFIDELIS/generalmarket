@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="faji-footer">
       <div className="faji-top">
         <div className="faji-company">
-          <div className="faji-logo">Generalmarket<span>.com</span></div>
+          <div className="faji-logo">Generalmarket<span>.ng</span></div>
           <h3>Generalmarket</h3>
           <p className="faji-contact">
             Phone: <a href="tel:07025187910">08141846896</a><br />
