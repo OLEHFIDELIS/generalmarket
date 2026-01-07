@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    height: 85vh;
+    height: 120vh;
     box-sizing: border-box;
     overflow: hidden;
     /* margin-top: 50px; */
@@ -25,9 +25,11 @@
 }
 
 .popular-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 50px;
-    display: flex;
     gap: 30px;
+    margin-bottom: 500rem;
 }
 
 @media (max-width: 1280px) {

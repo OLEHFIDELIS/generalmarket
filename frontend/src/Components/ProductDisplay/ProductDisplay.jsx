@@ -62,7 +62,7 @@ export default function ProductDisplay({ product, related }) {
   };
 
   const p = product || sample;
-  const relatedProducts = related || sampleRelated();
+  // const relatedProducts = related || sampleRelated();
 
   const [mainIndex, setMainIndex] = useState(0);
 
@@ -125,8 +125,7 @@ export default function ProductDisplay({ product, related }) {
                   <FaStar className="icon-star muted" />
                   <span className="seller-rating-num"> (0.0)</span>
                 </div>
-
-                <button className="btn-primary full">
+                <button className="btn-primary full" onClick={() => window.open("https://wa.me/+2348141846896", "_blank")}>
                   <FaWhatsapp style={{ marginRight: 8 }} />
                   Send message
                 </button>
@@ -147,7 +146,7 @@ export default function ProductDisplay({ product, related }) {
                   Last online: {formatDateShort(p.createdAt)} {formatTime(p.createdAt)}
                 </div>
 
-                <button className="btn-chat full">
+                <button className="btn-chat full" onClick={() => window.open("https://wa.me/+2348141846896", "_blank")}>
                   <FaRegCommentDots style={{ marginRight: 8 }} />
                   Start chat
                 </button>
@@ -202,7 +201,7 @@ export default function ProductDisplay({ product, related }) {
           </div>
 
           <div className="pd-actions-row">
-            <button className="btn-whatsapp">
+            <button className="btn-whatsapp" onClick={() => window.open("https://wa.me/+2348141846896", "_blank")}>
               <FaWhatsapp style={{ marginRight: 8 }} />
               WhatsApp Seller
             </button>
@@ -261,50 +260,9 @@ export default function ProductDisplay({ product, related }) {
         </div>
 
         {/* RELATED ITEMS */}
-        <div className="pd-related">
-          <h3>Related items</h3>
-          <div className="related-row">
-            {relatedProducts.map((rp, i) => (
-              <RelatedCard key={i} product={rp} />
-            ))}
-          </div>
-        </div>
+
       </div>
     </div>
   );
 }
 
-/* Related card */
-function RelatedCard({ product }) {
-  const images = (product.images && product.images.length && product.images) || [product.image || "https://via.placeholder.com/300"];
-  const seller = product.user || { username: product.sellerName || "Seller" };
-  const initial = (seller.username || product.title || "U")[0].toUpperCase();
-
-  return (
-    <div className="rc-card" role="article">
-      <div className="rc-image-wrap">
-        <img className="rc-image" src={images[0]} alt={product.title} />
-      </div>
-      <div className="rc-body">
-        <div className="rc-price">₦{Number(product.price || product.new_price || 0).toLocaleString()}</div>
-        <div className="rc-title">{product.title || product.name}</div>
-        <div className="rc-meta">
-          <div className="rc-seller">
-            <div className="rc-avatar">{initial}</div>
-            <div className="rc-seller-name">{seller.username}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* sample related used when none passed */
-function sampleRelated() {
-  return [
-    { title: "Non-stick pot", price: 119000, images: ["https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800&q=60&auto=format&fit=crop"], user: { username: "chinelo jessy" } },
-    { title: "Towel hanger", price: 8000, images: ["https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=60&auto=format&fit=crop"], user: { username: "chinelo jessy" } },
-    { title: "Kitchen knife set", price: 13000, images: ["https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=60&auto=format&fit=crop"], user: { username: "chinelo jessy" } },
-    { title: "New 1300w", price: 210000, images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=60&auto=format&fit=crop"], user: { username: "chinelo jessy" } },
-  ];
-}

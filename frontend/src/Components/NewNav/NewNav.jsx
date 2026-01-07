@@ -163,6 +163,7 @@ const NewNav = () => {
                                 <li onClick={() => setOpen(false)}>
                                     Switch to dark mode
                                 </li>
+                                <button></button>
 
                             </ul>
                         </div>

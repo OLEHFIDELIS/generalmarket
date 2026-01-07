@@ -24,7 +24,7 @@ const RelatedProduct = ({ productId }) => {
           related.map((item) => (
             <Item
               key={item._id}
-              id={item._id}
+              id={item.id}
               name={item.title}
               images={item.images}
               new_price={item.price}
