@@ -8,7 +8,7 @@ const RelatedProduct = ({ productId }) => {
   useEffect(() => {
     if (!productId) return;
 
-    fetch(`http://localhost:4000/related-products/${productId}`)
+    fetch(`https://generalmarket-bruz.onrender.com/related-products/${productId}`)
       .then(res => res.json())
       .then(data => setRelated(data))
       .catch(err => console.log(err));
