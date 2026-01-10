@@ -17,6 +17,7 @@ const User = require("./schema/user");
 
 const PORT = process.env.PORT || 4000;
 
+
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -130,13 +131,42 @@ app.post("/addproduct", async (req, res) => {
 
 
 // Creating API For Delete
-app.post("/removeproduct", async (req, res)=> {
-    await Product.findOneAndDelete({id: req.body.id});
-    console.log("Removed")
-    res.json({
-        success: true,
-        name: req.body.name
-    })
+app.post("/removeproduct", async (req, res) => {
+    try {
+    const { id } = req.body;
+
+    // 1️⃣ Find product first
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    // 2️⃣ Delete image from Cloudinary
+    if (product.cloudinary_id) {
+      await cloudinary.uploader.destroy(product.cloudinary_id);
+      console.log("Cloudinary image deleted");
+    }
+
+    // 3️⃣ Delete product from DB
+    await Product.findByIdAndDelete(id);
+
+    return res.json({
+      success: true,
+      message: "Product deleted successfully",
+    });
+
+  } catch (error) {
+    console.error("REMOVE PRODUCT ERROR:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete product",
+    });
+  }
 });
 
 // Creating Api For Getting All Product

@@ -1,61 +1,98 @@
-import React, { useActionState, useEffect, useState } from "react";
-import "./ListProduct.css"
-import cross_icon from "../../assets/cross_icon.png"
+import React, { useEffect, useState } from "react";
+import "./ListProduct.css";
+import cross_icon from "../../assets/cross_icon.png";
 
+const ListProduct = () => {
+  const [allProducts, setAllProducts] = useState([]);
 
-const ListProduct = ()=> {
-
-    const [allproducts, setAllProducts] = useState([]);
-    const fetchInfo = async ()=> {
-        await fetch("https://generalmarket-bruz.onrender.com/allproduct")
-        .then((res)=> res.json())
-        .then((data)=> {setAllProducts(data)})
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch(
+        "https://generalmarket-bruz.onrender.com/allproduct"
+      );
+      const data = await res.json();
+      setAllProducts(data);
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
     }
-    useEffect(()=> {
-        fetchInfo();
-    },[])
+  };
 
-    const removeProduct = async(id)=>{
-        await fetch("https://generalmarket-bruz.onrender.com/removeproduct", {
-            method:"POST",
-            headers:{
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id: id})
-        })
-        await fetchInfo();
-    }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-    return(
-        <div className="list-product">
-            <h1>All Product List</h1>
-            <div className="listproduct-format-main">
-                <p>Products</p>
-                <p>Title</p>
-                <p>Old price</p>
-                <p>New Price</p>
-                <p>Category</p>
-                <p>Remove</p>
-            </div>
-            <div className="listproduct-allproducts">
-                <hr />
-                {allproducts.map((product, index)=> {
-                    return <> <div key={index} className="listproduct-format-main listproduct-format">
-                        <img src={product.image} alt="" className="listproduct-product-icon" />
-                        <p>{product.name}</p>
-                        <p>${product.old_price}</p>
-                        <p>${product.new_price}</p>
-                        <p>{product.category}</p>
-                        <img onClick={()=>{removeProduct(product.id)}} className="listproduct-remove-icon" src={cross_icon} alt="" />
-                    </div>
-                    <hr />
-                    </>
-                })}
-            </div>
-        </div>
-    )
+const removeProduct = async (id) => {
+  // console.log("DELETE CLICKED:", id);
+
+  await fetch("https://generalmarket-bruz.onrender.com/removeproduct", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }), // ✅ SEND id (NOT _id)
+  });
+
+  fetchProducts(); // optional refresh
 };
 
+  return (
+    <div className="list-product">
+      <h1>All Product List</h1>
 
-export default ListProduct
+      <div className="listproduct-format-main">
+        <p>Image</p>
+        <p>Title</p>
+        <p>Price</p>
+        <p>Category</p>
+        <p>Status</p>
+        <p>Remove</p>
+      </div>
+
+      <div className="listproduct-allproducts">
+        <hr />
+
+        {allProducts.map((product) => (
+          <React.Fragment key={product._id}>
+            <div className="listproduct-format-main listproduct-format">
+              {/* IMAGE */}
+              <img
+                src={product.images?.[0] || "/no-image.png"}
+                alt={product.title}
+                className="listproduct-product-icon"
+                onError={(e) => {
+                  e.target.src = "/no-image.png";
+                }}
+              />
+
+              {/* TITLE */}
+              <p>{product.title}</p>
+
+              {/* PRICE */}
+              <p>₦{Number(product.price).toLocaleString()}</p>
+
+              {/* CATEGORY */}
+              <p>{product.category}</p>
+
+              {/* STATUS */}
+              <p style={{ color: product.available ? "green" : "red" }}>
+                {product.available ? "Available" : "Unavailable"}
+              </p>
+
+              {/* REMOVE */}
+              <img
+                src={cross_icon}
+                alt="Remove"
+                className="listproduct-remove-icon"
+                onClick={() => removeProduct(product._id)}
+              />
+            </div>
+
+            <hr />
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ListProduct;

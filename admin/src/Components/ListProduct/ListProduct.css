@@ -37,7 +37,7 @@
 }
 
 .listproduct-allproducts{
-    width: 85%;
+    width: 100%;
     overflow-y: auto;
 }
 
@@ -53,6 +53,10 @@
         padding: 15px 0px;
         color: #454545;
         font-size: 12px;
+    }
+    .listproduct-format-main .listproduct-product-icon{
+        max-width: 60px;
+        object-fit: contain;
     }
     .listproduct-product-icon{
         min-height: 60px;
