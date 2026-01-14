@@ -16,6 +16,8 @@ import {
   FaTractor,
   FaBaby,
   FaVenusMars,
+  FaPhone,
+  FaFone
 } from "react-icons/fa";
 
 const BrowseCategories = () => {
@@ -27,7 +29,7 @@ const BrowseCategories = () => {
     { icon: <FaTshirt />, label: "Fashion & Beauty" },
     { icon: <FaBriefcase />, label: "Services" },
     { icon: <FaUserTie />, label: "Jobs" },
-    { icon: <FaIndustry />, label: "Business & Industrial" },
+    { icon: <FaPhone />, label: "gadgets & accessories" },
     { icon: <FaBoxes />, label: "Misc & Others" },
     { icon: <FaBuilding />, label: "Property" },
     { icon: <FaCouch />, label: "Home & Furniture" },

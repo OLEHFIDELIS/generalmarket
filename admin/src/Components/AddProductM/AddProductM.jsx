@@ -136,18 +136,18 @@ const AddListing = () => {
             <option value="">Select category</option>
             <option value="electronics">Electronics</option>
             <option value="property">Property</option>
-            <option value="verhicles">Vehicles</option>
-            <option value="home & Furniture">Home & Furniture</option>
-            <option value="fasion & Beauty">Fashion & Beauty</option>
+            <option value="vehicless">Vehicles</option>
+            <option value="home & furniture">Home & Furniture</option>
+            <option value="fashion & beauty">Fashion & Beauty</option>
             <option value="hobbies & entertainment">Hobbies & Entertainment</option>
             <option value="services">Services</option>
-            <option value="garden & Outdoor">Garden & Outdoor</option>
+            <option value="garden & outdoor">Garden & Outdoor</option>
             <option value="jobs">Jobs</option>
-            <option value="agricultuer & food">Agriculture & Food</option>
-            <option value="business & industrial">Business & Industrial</option>
+            <option value="agriculture & food">Agriculture & Food</option>
+            <option value="gadgets & accessories">Gadgets & Accessories</option>
             <option value="baby & kids">Baby & Kids</option>
-            <option value="Misc & Others">Misc & Others</option>
-            <option value="Adult">Adult</option>
+            <option value="misc & others">Misc & Others</option>
+            <option value="adult">Adult</option>
           </select>
 
           <input
