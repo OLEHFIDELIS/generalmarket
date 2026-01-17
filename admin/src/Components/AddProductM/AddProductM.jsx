@@ -136,7 +136,7 @@ const AddListing = () => {
             <option value="">Select category</option>
             <option value="electronics">Electronics</option>
             <option value="property">Property</option>
-            <option value="vehicless">Vehicles</option>
+            <option value="vehicles">Vehicles</option>
             <option value="home & furniture">Home & Furniture</option>
             <option value="fashion & beauty">Fashion & Beauty</option>
             <option value="hobbies & entertainment">Hobbies & Entertainment</option>
