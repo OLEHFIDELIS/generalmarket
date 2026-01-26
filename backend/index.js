@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/images", express.static("uploads/images"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "dist")));
 
 // ✅ Connect to MongoDB
 mongoose
@@ -331,6 +332,10 @@ app.get("/related-products/:id", async (req, res) => {
   console.error("Related products error:", error);
   res.status(500).json({ message: "Server error" });
 }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(port, (error)=> {     
