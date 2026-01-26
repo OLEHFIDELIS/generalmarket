@@ -15,7 +15,6 @@ const cloudinary = require("./cloudinary");
 const Product = require("./schema/product");
 const User = require("./schema/user");
 
-const PORT = process.env.PORT || 4000;
 
 
 // Middleware
@@ -33,10 +32,10 @@ mongoose
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err.message));
 
-// ✅ Root route
-app.get("/", (req, res) => {
-  res.send("Server running successfully 🚀");
-});
+// // ✅ Root route
+// app.get("/", (req, res) => {
+//   res.send("Server running successfully 🚀");
+// });
 
 
 // --------------------------------------------------
