@@ -333,8 +333,8 @@ app.get("/related-products/:id", async (req, res) => {
 }
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
 app.listen(port, (error)=> {     
