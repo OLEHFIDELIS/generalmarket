@@ -18,9 +18,10 @@ const User = require("./schema/user");
 
 
 // Middleware
-const buildPath = path.join(__dirname, "build");
-// Serve static files
-app.use(express.static(buildPath));
+const path = require("path");
+app.use(
+  express.static(path.join(__dirname, "../frontend/build"))
+);
 app.use(express.json());
 app.use(cors());
 app.use("/images", express.static("uploads/images"));
@@ -335,8 +336,10 @@ app.get("/related-products/:id", async (req, res) => {
 }
 });
 
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(buildPath, "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../frontend/build/index.html")
+  );
 });
 
 app.listen(port, (error)=> {     
