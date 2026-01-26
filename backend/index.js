@@ -18,11 +18,12 @@ const User = require("./schema/user");
 
 
 // Middleware
+const distPath = path.join(__dirname, "dist");
+app.use(express.static(distPath));
 app.use(express.json());
 app.use(cors());
 app.use("/images", express.static("uploads/images"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "dist")));
 
 // ✅ Connect to MongoDB
 mongoose
@@ -333,8 +334,9 @@ app.get("/related-products/:id", async (req, res) => {
 }
 });
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+app.use((req, res, next) => {
+  if (req.method !== "GET") return next();
+  res.sendFile(path.join(distPath, "index.html"));
 });
 
 app.listen(port, (error)=> {     
