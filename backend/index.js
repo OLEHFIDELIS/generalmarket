@@ -333,9 +333,9 @@ app.get("/related-products/:id", async (req, res) => {
 }
 });
 
-app.get("/*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(
-    path.join(__dirname, "../frontend/build", "index.html")
+    path.join(__dirname, "../frontend/build/index.html")
   );
 });
 
