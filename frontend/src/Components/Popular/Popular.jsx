@@ -5,6 +5,7 @@ import Item from "../Items/Item";
 const Popular = () => {
   const [popularProducts, setPopularProducts] = useState([]);
 
+
   useEffect(() => {
     fetch("https://generalmarket-bruz.onrender.com/popular")
       .then((response) => response.json())
