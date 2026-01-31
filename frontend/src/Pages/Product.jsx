@@ -12,9 +12,15 @@ import RelatedProduct from "../Components/RelatedProduct/RelatedProduct";
 const Product = ()=> {
     const {all_product} = useContext(ShopContext);
     const { productId } = useParams();
-    const product = all_product.find((e)=> e.id === Number(productId));
+    
+    // ⚠️ SAFE FIND (supports id + _id)
+    const product = all_product.find(
+    (p) => String(p._id) === productId || p.id === Number(productId)
+    );
 
-    if (!product) return null;
+    if (!product){
+        return null;
+    }
 
     return(
         <div className="">
