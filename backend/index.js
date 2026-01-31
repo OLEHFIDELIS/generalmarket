@@ -235,8 +235,7 @@ app.get("/newcollection", async(req,res)=> {
 
 // Creating Endpoint For Purpular_in_women Data
 app.get("/popular", async(req, res)=>{
-    let popularProducts = await Product.find({});
-    popularProducts = Product.slice(0,4);
+    let popularProducts = await Product.find({}).limit(4);
     res.send(popularProducts)
 });
 
