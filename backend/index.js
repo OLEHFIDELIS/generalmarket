@@ -330,7 +330,13 @@ app.get("/related-products/:id", async (req, res) => {
 }
 });
 
-app.use((req, res) => {
+// ✅ Serve React static files
+app.use(
+  express.static(path.join(__dirname, "../frontend/build"))
+);
+
+// ✅ Catch-all for React Router
+app.get("*", (req, res) => {
   res.sendFile(
     path.join(__dirname, "../frontend/build/index.html")
   );
