@@ -128,12 +128,14 @@ const ShopContextProvider = (props) => {
   const [all_product, setAll_product] = useState([]);
 
   const [cartItems, setCartItems] = useState(getDefaultCart());
+  const [loading, setLoading] = useState(true);
 
   // ✅ Load products
   useEffect(() => {
     fetch("https://generalmarket-bruz.onrender.com/allproduct")
       .then((response) => response.json())
       .then((data) => setAll_product(data));
+      setLoading(false);
   }, []);
 
   // ✅ Load cart on mount

@@ -7,6 +7,10 @@ import Item from "../Components/Items/Item";
 const ShopCategory = (props) => {
   const { all_product } = useContext(ShopContext);
 
+  if (!all_product || all_product.length === 0) {
+  return null; // or loader
+ }
+
   // Normalize category text
   const currentCategory = props.category.toLowerCase();
 
