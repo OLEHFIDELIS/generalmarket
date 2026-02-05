@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.62a31757.css",
+    "main.js": "/static/js/main.b06deb10.js",
+    "static/js/453.670e15c7.chunk.js": "/static/js/453.670e15c7.chunk.js",
+    "static/media/gmarketlogo.png": "/static/media/gmarketlogo.897a7c52005843f0dcfd.png",
+    "static/media/exclusive_image.png": "/static/media/exclusive_image.e8118f2149d9cb916980.png",
+    "static/media/home-search-bg.jpg": "/static/media/home-search-bg.fea68d7ec3fa12c07283.jpg",
+    "static/media/welcome-actions.svg": "/static/media/welcome-actions.6f7fa9db3d6713e8bf2978845ae2f8de.svg",
+    "index.html": "/index.html",
+    "main.62a31757.css.map": "/static/css/main.62a31757.css.map",
+    "main.b06deb10.js.map": "/static/js/main.b06deb10.js.map",
+    "453.670e15c7.chunk.js.map": "/static/js/453.670e15c7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.62a31757.css",
+    "static/js/main.b06deb10.js"
+  ]
+}
