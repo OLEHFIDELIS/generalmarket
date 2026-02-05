@@ -335,8 +335,8 @@ app.use(
   express.static(path.join(__dirname, "../frontend/build"))
 );
 
-// ✅ Catch-all for React Router
-app.get("/*", (req, res) => {
+// SPA fallback — Express 5 SAFE
+app.use((req, res) => {
   res.sendFile(
     path.join(__dirname, "../frontend/build/index.html")
   );
